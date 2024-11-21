@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Tiffin Service</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+    header {
+      background-color: #ff6347;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+    }
+    .container {
+      margin: 20px auto;
+      max-width: 800px;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      color: #333;
+      margin-top: 30px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    ul li {
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    label {
+      font-size: 16px;
+    }
+    input[type="checkbox"] {
+      margin-right: 10px;
+    }
+    .btn {
+      background-color: #25d366;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 5px;
+      display: block;
+      margin: 20px auto;
+      text-align: center;
+    }
+    .btn:hover {
+      background-color: #1da851;
+    }
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #ff6347;
+      color: white;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Home Tiffin Service</h1>
+  </header>
+  <div class="container">
+    <form id="tiffinForm">
+      <h2>Veg Menu</h2>
+      <ul>
+        <li>
+          <label><input type="checkbox" value="Veg Tiffin (Dal, Rice, Roti, Sabzi)"> Veg Tiffin (Dal, Rice, Roti, Sabzi)</label>
+        </li>
+        <li>
+          <label><input type="checkbox" value="Paneer Butter Masala Combo"> Paneer Butter Masala Combo</label>
+        </li>
+        <li>
+          <label><input type="checkbox" value="Veg Biryani with Raita"> Veg Biryani with Raita</label>
+        </li>
+      </ul>
+
+      <h2>Non-Veg Menu</h2>
+      <ul>
+        <li>
+          <label><input type="checkbox" value="Non-Veg Tiffin (Chicken Curry, Rice, Roti)"> Non-Veg Tiffin (Chicken Curry, Rice, Roti)</label>
+        </li>
+        <li>
+          <label><input type="checkbox" value="Chicken Biryani with Raita"> Chicken Biryani with Raita</label>
+        </li>
+        <li>
+          <label><input type="checkbox" value="Egg Curry with Rice"> Egg Curry with Rice</label>
+        </li>
+      </ul>
+
+      <h2>Extra Addition</h2>
+      <ul>
+        <li>
+          <label><input type="checkbox" value="Extra Chapati"> Extra Chapati</label>
+        </li>
+        <li>
+          <label><input type="checkbox" value="Extra Dessert"> Extra Dessert</label>
+        </li>
+      </ul>
+
+      <label for="name">Your Name:</label><br>
+      <input type="text" id="name" name="name" required><br><br>
+      
+      <label for="phone">Your Phone Number:</label><br>
+      <input type="tel" id="phone" name="phone" required><br><br>
+      
+      <button type="button" class="btn" onclick="submitOrder()">Send Order via WhatsApp</button>
+    </form>
+  </div>
+  <footer>
+    <p>&copy; 2024 Home Tiffin Service. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function submitOrder() {
+      const phone = "YOUR_PHONE_NUMBER"; // Replace with your WhatsApp number
+      const name = document.getElementById("name").value;
+      const phoneNumber = document.getElementById("phone").value;
+
+      // Collect selected items
+      const items = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
+        .map(item => item.value);
+
+      if (!name || !phoneNumber || items.length === 0) {
+        alert("Please fill in your name, phone number, and select at least one item.");
+        return;
+      }
+
+      const message = `Hello, I am ${name}. Here is my order:\n\n` +
+                      `Selected Items:\n- ${items.join("\n- ")}\n\n` +
+                      `Contact: ${phoneNumber}`;
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      window.open(url, "_blank");
+    }
+  </script>
+</body>
+</html>
