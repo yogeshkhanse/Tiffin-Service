@@ -25,9 +25,26 @@
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-    h2 {
+    h2, h3 {
       color: #333;
-      margin-top: 30px;
+    }
+    section {
+      margin-bottom: 20px;
+      padding: 20px;
+      border-radius: 8px;
+      color: white;
+    }
+    .menu-section {
+      background-image: url('images.png');
+      background-size: cover;
+      background-position: center;
+      color: white;
+    }
+    .order-section {
+      background-image: url('images.jfif');
+      background-size: cover;
+      background-position: center;
+      color: white;
     }
     ul {
       list-style: none;
@@ -36,17 +53,22 @@
     ul li {
       margin: 10px 0;
       padding: 10px;
-      border: 1px solid #ddd;
+      background-color: rgba(255, 255, 255, 0.8);
+      color: #333;
       border-radius: 5px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
     }
     label {
       font-size: 16px;
     }
     input[type="checkbox"] {
       margin-right: 10px;
+    }
+    input[type="text"], input[type="tel"] {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
     }
     .btn {
       background-color: #25d366;
@@ -79,7 +101,7 @@
   </header>
   <div class="container">
     <!-- Menu Section -->
-    <section>
+    <section class="menu-section">
       <h2>Menu</h2>
       <h3>Veg Options</h3>
       <ul>
@@ -96,7 +118,7 @@
     </section>
 
     <!-- Order Section -->
-    <form id="tiffinForm">
+    <section class="order-section">
       <h2>Place Your Order</h2>
       <h3>Select Veg Options</h3>
       <ul>
@@ -141,7 +163,7 @@
       <input type="tel" id="phone" name="phone" required><br><br>
       
       <button type="button" class="btn" onclick="submitOrder()">Send Order via WhatsApp</button>
-    </form>
+    </section>
   </div>
   <footer>
     <p>&copy; 2024 Home Tiffin Service. All rights reserved.</p>
@@ -149,7 +171,7 @@
 
   <script>
     function submitOrder() {
-      const phone = "+919665975445"; // Replace with your WhatsApp number
+      const phone = "YOUR_PHONE_NUMBER"; // Replace with your WhatsApp number
       const name = document.getElementById("name").value;
       const phoneNumber = document.getElementById("phone").value;
 
